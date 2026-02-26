@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero-panel">
+  <div>
+    <h1>班级成绩总览</h1>
+    <p>通过检索、分数筛选和实时图表，快速掌握班级整体水平与成绩分布变化。</p>
+  </div>
+  <div class="hero-actions">
+    <a class="btn btn-main" href="{{ url_for('manage') }}">进入成绩管理</a>
+    <a class="btn btn-ghost" href="{{ url_for('analytics') }}">查看深度分析</a>
+  </div>
+</section>
+
+<section class="card filter-card">
+  <div class="card-head">
+    <h2>筛选条件</h2>
+  </div>
+  <div class="filter-grid">
+    <label>
+      姓名检索
+      <input id="keyword" type="text" placeholder="输入姓名关键字" />
+    </label>
+    <label>
+      总分下限
+      <input id="min-total" type="number" min="0" max="750" value="0" />
+    </label>
+    <label>
+      总分上限
+      <input id="max-total" type="number" min="0" max="750" value="750" />
+    </label>
+    <div class="filter-actions">
+      <button id="apply-filter" class="btn btn-main" type="button">应用筛选</button>
+      <button id="reset-filter" class="btn btn-ghost" type="button">重置</button>
+    </div>
+  </div>
+</section>
+
+<section class="metric-grid" id="metric-grid">
+  <article class="metric-card">
+    <h3>学生人数</h3>
+    <p id="metric-count">-</p>
+  </article>
+  <article class="metric-card">
+    <h3>班级均分</h3>
+    <p id="metric-avg">-</p>
+  </article>
+  <article class="metric-card">
+    <h3>最高总分</h3>
+    <p id="metric-max">-</p>
+  </article>
+  <article class="metric-card">
+    <h3>600分以上占比</h3>
+    <p id="metric-excellent">-</p>
+  </article>
+  <article class="metric-card">
+    <h3>450分以上占比</h3>
+    <p id="metric-qualified">-</p>
+  </article>
+</section>
+
+<section class="chart-grid chart-grid-3">
+  <article class="card chart-card">
+    <div class="card-head"><h2>总分分布</h2></div>
+    <div id="histogram-chart" class="chart"></div>
+  </article>
+  <article class="card chart-card">
+    <div class="card-head"><h2>分段分布</h2></div>
+    <div id="segment-chart" class="chart"></div>
+  </article>
+  <article class="card chart-card">
+    <div class="card-head"><h2>学科均分对比</h2></div>
+    <div id="subject-avg-chart" class="chart"></div>
+  </article>
+</section>
+
+<section class="card table-card">
+  <div class="card-head">
+    <h2>总成绩单</h2>
+    <span id="table-count" class="pill">0 条</span>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>排名</th>
+          <th>姓名</th>
+          <th>语文</th>
+          <th>数学</th>
+          <th>英语</th>
+          <th>物理</th>
+          <th>化学</th>
+          <th>生物</th>
+          <th>总分</th>
+        </tr>
+      </thead>
+      <tbody id="score-table-body"></tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}

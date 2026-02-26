@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero-panel">
+  <div>
+    <h1>成绩深度分析</h1>
+    <p>从学科结构、离散程度、相关关系与个体分布多维解读班级成绩。</p>
+  </div>
+  <div class="hero-actions">
+    <a class="btn btn-main" href="{{ url_for('dashboard') }}">返回总览</a>
+    <a class="btn btn-ghost" href="{{ url_for('manage') }}">去管理数据</a>
+  </div>
+</section>
+
+<section class="chart-grid chart-grid-2">
+  <article class="card chart-card">
+    <div class="card-head"><h2>学科均分雷达图</h2></div>
+    <div id="radar-chart" class="chart"></div>
+  </article>
+  <article class="card chart-card">
+    <div class="card-head"><h2>学科箱线图</h2></div>
+    <div id="boxplot-chart" class="chart"></div>
+  </article>
+</section>
+
+<section class="chart-grid chart-grid-1">
+  <article class="card chart-card">
+    <div class="card-head"><h2>数学 vs 总分散点图（颜色映射英语）</h2></div>
+    <div id="scatter-chart" class="chart large"></div>
+  </article>
+</section>
+
+<section class="chart-grid chart-grid-1">
+  <article class="card chart-card">
+    <div class="card-head"><h2>学科相关性热力图</h2></div>
+    <div id="heatmap-chart" class="chart large"></div>
+  </article>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/analytics.js') }}"></script>
+{% endblock %}

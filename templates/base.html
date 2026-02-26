@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ScoreAtlas | 高中成绩管理</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;800&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+  <div class="orb orb-a"></div>
+  <div class="orb orb-b"></div>
+  <div class="orb orb-c"></div>
+
+  <header class="topbar">
+    <div class="brand-wrap">
+      <span class="brand-mark">SA</span>
+      <div class="brand-text">
+        <strong>ScoreAtlas</strong>
+        <small>高中学生成绩管理系统</small>
+      </div>
+    </div>
+    <nav class="nav-links">
+      <a href="{{ url_for('dashboard') }}" class="{{ 'active' if active_page == 'dashboard' else '' }}">总览</a>
+      <a href="{{ url_for('manage') }}" class="{{ 'active' if active_page == 'manage' else '' }}">成绩管理</a>
+      <a href="{{ url_for('analytics') }}" class="{{ 'active' if active_page == 'analytics' else '' }}">统计分析</a>
+    </nav>
+  </header>
+
+  <main class="page-container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    <span>ScoreAtlas · Full Stack Demo</span>
+    <span>总分规则：750（语数外150，理化生100）</span>
+  </footer>
+
+  <div id="toast-host"></div>
+
+  <script>
+    window.APP_CONFIG = {
+      apiBase: ""
+    };
+  </script>
+  <script src="{{ url_for('static', filename='js/common.js') }}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>
