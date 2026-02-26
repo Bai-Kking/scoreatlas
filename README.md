@@ -99,6 +99,26 @@ Deploy `app.py` backend to a Python platform such as:
 - Fly.io
 - VPS / cloud server
 
+#### Render quick deploy (backend)
+
+This repo already includes:
+- `Procfile`
+- `render.yaml`
+- `gunicorn` in `requirements.txt`
+
+If you deploy from Render dashboard:
+1. New `Web Service` -> connect `Bai-Kking/scoreatlas`
+2. Environment: `Python`
+3. Build Command: `pip install -r requirements.txt`
+4. Start Command: `gunicorn app:app --bind 0.0.0.0:$PORT --workers 2 --threads 4 --timeout 120`
+5. (Optional) set env `FLASK_DEBUG=0`
+
+After deployment, your backend base URL will be something like:
+- `https://scoreatlas-backend.onrender.com`
+
+Then set this URL in:
+- `docs/assets/app.js` -> `window.SCOREATLAS_API_BASE`
+
 ### 2) GitHub Pages deployment
 
 This repo includes a static site in `docs/` and workflow `.github/workflows/pages.yml`.
