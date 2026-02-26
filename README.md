@@ -1,27 +1,37 @@
-# ScoreAtlas - 高中学生成绩管理系统
+# ScoreAtlas (Full-Stack High School Score Manager)
 
-一个完整的全栈项目（后端 Flask + SQLite，前端 HTML/CSS/JavaScript + ECharts），支持成绩管理、统计分析、数据导入导出、多页面跳转。
+ScoreAtlas is a complete full-stack project for high school score management.
 
-## 功能概览
+- Backend: Flask + SQLite
+- Frontend: HTML + CSS + JavaScript + ECharts
+- Pages: Dashboard / Manage / Analytics
 
-- 学生成绩字段：姓名、语文、数学、英语、物理、化学、生物（总分 750）
-- 初始自动生成 40 名学生，成绩分层随机，贴近真实班级梯度
-- 新增学生成绩
-- 定向改单科（指定学生 + 指定学科）
-- 删除学生
-- 查询总成绩单（关键词 + 总分区间）
-- 数据导出（CSV / JSON）
-- 数据导入（JSON）
-- 统计可视化：
-  - 总分分布柱状图
-  - 分数段分布图
-  - 学科均分对比图
-  - 学科雷达图
-  - 学科箱线图
-  - 数学 vs 总分散点图
-  - 学科相关性热力图
+## Core Features
 
-## 项目结构
+- Student fields: `name`, `chinese`, `math`, `english`, `physics`, `chemistry`, `biology`
+- Total score rule: 750 points (`150+150+150+100+100+100`)
+- Initial sample generation: 40 students, realistic tiered distribution
+- CRUD:
+  - add student
+  - update one subject for one student
+  - delete student
+- Query and filtering:
+  - name keyword
+  - total score range
+- Data transfer:
+  - export CSV
+  - export JSON
+  - import JSON
+- Analytics:
+  - total score histogram
+  - score segment chart
+  - subject average chart
+  - radar chart
+  - box plot
+  - scatter chart (math vs total, english mapped by color)
+  - correlation heatmap
+
+## Project Structure
 
 ```text
 ScoreAtlas/
@@ -40,9 +50,17 @@ ScoreAtlas/
     js/dashboard.js
     js/manage.js
     js/analytics.js
+  docs/
+    index.html
+    assets/
+      style.css
+      app.js
+  .github/
+    workflows/
+      pages.yml
 ```
 
-## 本地运行
+## Local Run
 
 ```bash
 cd C:\Users\Kent_\Desktop\ScoreAtlas
@@ -52,12 +70,13 @@ pip install -r requirements.txt
 python app.py
 ```
 
-浏览器访问：
+Open:
 
 - http://127.0.0.1:5050/dashboard
 
-## API 简表
+## API Endpoints
 
+- `GET /api/health`
 - `GET /api/students`
 - `POST /api/students`
 - `PATCH /api/students/<id>/subject`
@@ -68,8 +87,40 @@ python app.py
 - `GET /api/export/json`
 - `POST /api/import/json`
 
-## 发布说明（GitHub / GitHub Pages）
+## Deployment Notes
 
-当前项目是服务端渲染 + API 的全栈架构，适合部署到支持 Python 的平台（Render、Railway、Fly.io、云服务器等）。
+### 1) Full-stack deployment (recommended)
 
-如果你希望使用 GitHub Pages（纯静态托管），建议将前端改为完全静态并接入独立后端 API；本项目保留了这个扩展方向。
+GitHub Pages cannot host Python backend runtime.
+
+Deploy `app.py` backend to a Python platform such as:
+- Render
+- Railway
+- Fly.io
+- VPS / cloud server
+
+### 2) GitHub Pages deployment
+
+This repo includes a static site in `docs/` and workflow `.github/workflows/pages.yml`.
+
+After pushing to GitHub:
+1. Ensure default branch is `main`.
+2. Open GitHub repo -> `Settings` -> `Pages`.
+3. Source: `GitHub Actions`.
+4. Wait for workflow `Deploy GitHub Pages` to succeed.
+5. Your site URL will be:
+   - `https://<your-username>.github.io/<repo-name>/`
+
+If you want `docs/` page to read real backend data, set API base in `docs/assets/app.js`:
+
+```js
+window.SCOREATLAS_API_BASE = "https://your-backend-domain";
+```
+
+## Git Commands Used
+
+```bash
+git init
+git add .
+git commit -m "feat: build ScoreAtlas full-stack grade management system"
+```

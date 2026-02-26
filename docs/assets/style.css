@@ -1,0 +1,156 @@
+:root {
+  --bg: #f3f8ff;
+  --card: #ffffff;
+  --line: #d8e5f6;
+  --text: #14345a;
+  --sub: #52729b;
+  --brand: #2063b3;
+  --brand2: #139a89;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  color: var(--text);
+  background: radial-gradient(circle at 16% 10%, #e6f1ff 0, transparent 42%),
+              radial-gradient(circle at 82% 8%, #dcf4ee 0, transparent 40%),
+              var(--bg);
+}
+
+.wrap {
+  width: min(1160px, calc(100vw - 28px));
+  margin: 20px auto;
+  display: grid;
+  gap: 14px;
+}
+
+.hero,
+.card,
+.metric {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--card);
+  box-shadow: 0 14px 32px rgba(19, 62, 121, 0.1);
+}
+
+.hero {
+  padding: 18px 20px;
+}
+
+.hero h1 {
+  margin: 0;
+  font-family: "ZCOOL XiaoWei", serif;
+  font-size: 36px;
+}
+
+.hero p {
+  margin: 10px 0 0;
+  color: var(--sub);
+  font-size: 14px;
+}
+
+.state-row {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.state {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  background: #e8f1ff;
+  color: #285283;
+}
+
+.state.ok {
+  background: #dcf4ee;
+  color: #0d7f70;
+}
+
+.state.mock {
+  background: #fff2d8;
+  color: #9f6a10;
+}
+
+.state.err {
+  background: #ffe2df;
+  color: #b54338;
+}
+
+.api-base {
+  color: #3f628c;
+  font-size: 12px;
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.metric {
+  padding: 12px;
+}
+
+.metric h3 {
+  margin: 0;
+  font-size: 13px;
+  color: var(--sub);
+}
+
+.metric p {
+  margin: 8px 0 0;
+  font-size: 26px;
+  color: #1d4778;
+  font-weight: 800;
+}
+
+.chart-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.card {
+  padding: 12px 14px;
+}
+
+.card h2 {
+  margin: 0 0 10px;
+  font-size: 21px;
+  font-family: "ZCOOL XiaoWei", serif;
+}
+
+.chart {
+  min-height: 320px;
+}
+
+.tips ol {
+  margin: 0;
+  padding-left: 20px;
+  color: #31597f;
+  display: grid;
+  gap: 8px;
+}
+
+code {
+  background: #eef5ff;
+  border: 1px solid #d2e2f6;
+  border-radius: 6px;
+  padding: 1px 5px;
+}
+
+@media (max-width: 880px) {
+  .metric-grid,
+  .chart-grid {
+    grid-template-columns: 1fr;
+  }
+}

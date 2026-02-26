@@ -456,6 +456,13 @@ def create_app() -> Flask:
     app = Flask(__name__)
     os.makedirs(DATA_DIR, exist_ok=True)
 
+    @app.after_request
+    def apply_cors_headers(response: Response) -> Response:
+        response.headers["Access-Control-Allow-Origin"] = "*"
+        response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization"
+        response.headers["Access-Control-Allow-Methods"] = "GET, POST, PATCH, DELETE, OPTIONS"
+        return response
+
     app.teardown_appcontext(close_db)
 
     with app.app_context():

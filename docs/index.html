@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ScoreAtlas · GitHub Pages</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700;800&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  <link rel="stylesheet" href="./assets/style.css" />
+</head>
+<body>
+  <main class="wrap">
+    <header class="hero">
+      <h1>ScoreAtlas</h1>
+      <p>GitHub Pages 展示站。可连接你的 ScoreAtlas API，实时展示班级成绩统计。</p>
+      <div class="state-row">
+        <span id="conn-state" class="state">检测中...</span>
+        <span id="api-base" class="api-base"></span>
+      </div>
+    </header>
+
+    <section class="metric-grid">
+      <article class="metric"><h3>学生人数</h3><p id="m-count">-</p></article>
+      <article class="metric"><h3>班级均分</h3><p id="m-avg">-</p></article>
+      <article class="metric"><h3>最高总分</h3><p id="m-max">-</p></article>
+      <article class="metric"><h3>600分以上</h3><p id="m-excellent">-</p></article>
+    </section>
+
+    <section class="chart-grid">
+      <article class="card">
+        <h2>总分分布</h2>
+        <div id="hist-chart" class="chart"></div>
+      </article>
+      <article class="card">
+        <h2>学科均分</h2>
+        <div id="avg-chart" class="chart"></div>
+      </article>
+    </section>
+
+    <section class="card tips">
+      <h2>部署说明</h2>
+      <ol>
+        <li>本页由 GitHub Pages 托管，适合静态前端展示。</li>
+        <li>完整后端（Flask + SQLite）需部署到 Render/Railway/Fly.io/云服务器。</li>
+        <li>部署后，在 <code>docs/assets/app.js</code> 内配置 <code>window.SCOREATLAS_API_BASE</code>（或通过脚本注入）。</li>
+      </ol>
+    </section>
+  </main>
+
+  <script>
+    // 例如：window.SCOREATLAS_API_BASE = "https://your-backend.example.com";
+    window.SCOREATLAS_API_BASE = window.SCOREATLAS_API_BASE || "";
+  </script>
+  <script src="./assets/app.js"></script>
+</body>
+</html>
